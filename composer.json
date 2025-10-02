@@ -1,17 +1,17 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "netizens-bhupen/netizens-rb",
+    "description": "Roles and permissions",
     "keywords": [
-        ":vendor_name",
+        "netizens-bhupen",
         "laravel",
-        ":package_slug"
+        "netizens-rb"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/netizens-bhupen/netizens-rb",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": ":Bhupendra Desale",
+            "email": "bhupendra.d@netizens.email",
             "role": "Developer"
         }
     ],
