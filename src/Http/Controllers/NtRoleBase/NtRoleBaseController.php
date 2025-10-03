@@ -11,6 +11,7 @@ class NtRoleBaseController extends Controller
         $data = [
             'message' => 'Welcome to Nt-RB',
         ];
+
         return view('ntrolebaseView::ntrolebase.index', compact('data'));
     }
 }

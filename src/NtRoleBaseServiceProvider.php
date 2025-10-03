@@ -2,9 +2,9 @@
 
 namespace Netizens\RB;
 
+use Netizens\RB\Commands\NtRoleBaseCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Netizens\RB\Commands\NtRoleBaseCommand;
 
 class NtRoleBaseServiceProvider extends PackageServiceProvider
 {
@@ -22,9 +22,9 @@ class NtRoleBaseServiceProvider extends PackageServiceProvider
     {
         parent::boot();
 
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'ntrolebaseView');
-        $this->loadRoutesFrom(__DIR__ . '/../routes/NtRoleBase/nt-rolebase-web-route.php');
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
-        
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'ntrolebaseView');
+        $this->loadRoutesFrom(__DIR__.'/../routes/NtRoleBase/nt-rolebase-web-route.php');
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+
     }
 }

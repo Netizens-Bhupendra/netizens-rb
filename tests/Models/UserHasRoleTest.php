@@ -2,10 +2,10 @@
 
 namespace Netizens\RB\Tests\Models;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Netizens\RB\Models\UserHasRole;
 use Netizens\RB\NtRoleBaseServiceProvider;
 use Orchestra\Testbench\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UserHasRoleTest extends TestCase
 {
