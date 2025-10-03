@@ -36,11 +36,13 @@
     "autoload": {
         "psr-4": {
             "VendorName\\Skeleton\\": "src/",
+            "Netizens\\RB\\": "src/",
             "VendorName\\Skeleton\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
+            "Netizens\\RB\\Tests\\": "tests/",
             "VendorName\\Skeleton\\Tests\\": "tests/",
             "Workbench\\App\\": "workbench/app/"
         }
@@ -63,7 +65,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "VendorName\\Skeleton\\SkeletonServiceProvider",
+                "Netizens\\RB\\NtRoleBaseServiceProvider"
             ],
             "aliases": {
                 "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
