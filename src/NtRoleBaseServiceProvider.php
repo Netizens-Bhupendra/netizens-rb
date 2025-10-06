@@ -23,11 +23,11 @@ class NtRoleBaseServiceProvider extends PackageServiceProvider
         parent::boot();
 
         // 1 Load routes from package
-        $this->loadRoutesFrom(__DIR__ . '/../routes/NtRoleBase/ntrolebase.php');
+        $this->loadRoutesFrom(__DIR__.'/../routes/NtRoleBase/ntrolebase.php');
 
         // 2 Optional: publish routes if user wants to customize
         $this->publishes([
-            __DIR__ . '/../routes/NtRoleBase/ntrolebase.php' => base_path('routes/NtRoleBase/ntrolebase.php'),
+            __DIR__.'/../routes/NtRoleBase/ntrolebase.php' => base_path('routes/NtRoleBase/ntrolebase.php'),
         ], 'ntrolebase-routes');
 
         // 3 Load views from package
