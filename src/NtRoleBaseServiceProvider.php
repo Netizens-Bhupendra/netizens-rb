@@ -13,7 +13,7 @@ class NtRoleBaseServiceProvider extends PackageServiceProvider
         $package
             ->name('pckg-ntrolebase')
             ->hasConfigFile()
-            ->hasViews('ntrolebase')
+            // ->hasViews('ntrolebase')
             ->hasMigration('create_migration_table_name_table')
             ->hasCommand(NtRoleBaseCommand::class);
     }
