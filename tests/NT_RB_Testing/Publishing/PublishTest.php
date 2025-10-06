@@ -22,7 +22,7 @@ class PublishTest extends RBTestCase
             ->assertExitCode(0);
 
         // ✅ Assert file exists
-        $this->assertFileExists($targetPath . '/NtRoleBaseController.php');
+        $this->assertFileExists($targetPath.'/NtRoleBaseController.php');
     }
 
     /** @test */
