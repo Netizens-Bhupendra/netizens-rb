@@ -27,7 +27,7 @@ class NtRoleBaseServiceProvider extends PackageServiceProvider
 
         // 2️⃣ Publish views so users can customize
         $this->publishes([
-            __DIR__.'/../resources/views/ntrolebase' => resource_path('views/vendor/ntrolebase'),
+            __DIR__ . '/../resources/views/ntrolebase' => resource_path('views/ntrolebase'),
         ], 'ntrolebase-views');
 
         $this->loadRoutesFrom(__DIR__.'/../routes/NtRoleBase/nt-rolebase-web-route.php');
