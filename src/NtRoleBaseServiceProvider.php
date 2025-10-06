@@ -2,6 +2,7 @@
 
 namespace Netizens\RB;
 
+use Illuminate\Support\Facades\File;
 use Netizens\RB\Commands\NtRoleBaseCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -51,11 +52,20 @@ class NtRoleBaseServiceProvider extends PackageServiceProvider
         //     __DIR__ . '/../database/migrations/ntrolebase' => database_path('migrations/ntrolebase'),
         // ], 'ntrolebase-migrations');
 
+        // Determine route file
+        $routePath = base_path('routes/ntrolebase/ntrb_routes.php');
+        if (!File::exists($routePath)) {
+            $routePath = __DIR__ . '/../routes/ntrolebase/ntrb_routes.php';
+        }
+        // 2 Load package routes
+        // $this->loadRoutesFrom(__DIR__.'/../routes/ntrolebase/ntrb_routes.php');
+
+        // Load routes
+        $this->loadRoutesFrom($routePath);
+
         // 1 Load package migrations
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations/ntrolebase');
 
-        // 2 Load package routes
-        $this->loadRoutesFrom(__DIR__.'/../routes/ntrolebase/ntrb_routes.php');
 
         // 3 Load package views
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'ntrolebaseView');
