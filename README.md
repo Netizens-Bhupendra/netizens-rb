@@ -29,7 +29,14 @@ We highly appreciate you sending us a postcard from your hometown, mentioning wh
 You can install the package via composer:
 
 ```bash
-composer require :vendor_slug/:package_slug
+# composer require :vendor_slug/:package_slug
+composer require netizens-bhupen/netizens-rb
+```
+
+You can publish and all required assets (Routes, Controllers, views, migrations, etc.):
+
+```bash
+php php artisan vendor:publish --tag=ntrolebase-all"
 ```
 
 You can publish and run the migrations with:
