@@ -45,11 +45,11 @@ class NtRoleBaseServiceProvider extends PackageServiceProvider
 
 
         // 5 Load migrations from package
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations/ntrolebase');
 
         // 6 Publish migrations so user can run them
         $this->publishes([
-            __DIR__ . '/../database/migrations' => database_path('migrations'),
+            __DIR__ . '/../database/migrations/ntrolebase' => database_path('migrations/ntrolebase'),
         ], 'ntrolebase-migrations');
     }
 }

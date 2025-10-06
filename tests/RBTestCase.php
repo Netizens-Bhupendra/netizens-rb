@@ -43,6 +43,6 @@ class RBTestCase extends Orchestra
         );
 
         // Load your package migrations
-        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations/ntrolebase');
     }
 }

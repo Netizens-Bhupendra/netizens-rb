@@ -74,7 +74,7 @@ class PublishTest extends RBTestCase
     public function test_it_can_publish_migrations()
     {
         // point to testbench Laravel app path
-        $targetDir = base_path('vendor/orchestra/testbench-core/laravel/database/migrations');
+        $targetDir = base_path('vendor/orchestra/testbench-core/laravel/database/migrations/ntrolebase');
 
         // 🧹 Clean previously published migrations
         $publishedFiles = glob($targetDir . '/*_create_migration_table_name_table.php');
