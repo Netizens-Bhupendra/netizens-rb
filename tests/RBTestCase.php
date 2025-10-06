@@ -39,10 +39,10 @@ class RBTestCase extends Orchestra
 
         // Tell Laravel where to find your factories
         Factory::guessFactoryNamesUsing(
-            fn(string $modelName) => 'Netizens\\RB\\Database\\Factories\\' . class_basename($modelName) . 'Factory'
+            fn (string $modelName) => 'Netizens\\RB\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
 
         // Load your package migrations
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
     }
 }
