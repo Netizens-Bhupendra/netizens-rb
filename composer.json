@@ -36,15 +36,17 @@
     "autoload": {
         "psr-4": {
             "VendorName\\Skeleton\\": "src/",
+            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories/",
             "Netizens\\RB\\": "src/",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories/"
+            "Netizens\\RB\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Netizens\\RB\\Tests\\": "tests/",
             "VendorName\\Skeleton\\Tests\\": "tests/",
-            "Workbench\\App\\": "workbench/app/"
+            "Workbench\\App\\": "workbench/app/",
+            "Netizens\\RB\\Tests\\": "tests/",
+            "Netizens\\RB\\Database\\Factories\\": "database/factories/"
         }
     },
     "scripts": {

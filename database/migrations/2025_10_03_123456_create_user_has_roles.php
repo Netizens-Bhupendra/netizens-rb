@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_has_roles22', function (Blueprint $table) {
+        Schema::create('user_has_roles', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('user_id')->nullable()->index()->references('id')->on('users')->onDelete('cascade');
             $table->uuid('role_id')->nullable()->index()->references('id')->on('roles')->onDelete('cascade');
