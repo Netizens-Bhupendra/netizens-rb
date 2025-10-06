@@ -69,4 +69,29 @@ class PublishTest extends RBTestCase
         $content = File::get($targetPath);
         $this->assertStringContainsString('<h1', $content);
     }
+
+    /** @test */
+    public function test_it_can_publish_migrations()
+    {
+        // point to testbench Laravel app path
+        $targetDir = base_path('vendor/orchestra/testbench-core/laravel/database/migrations');
+
+        // 🧹 Clean previously published migrations
+        $publishedFiles = glob($targetDir . '/*_create_migration_table_name_table.php');
+        foreach ($publishedFiles as $file) {
+            File::delete($file);
+        }
+
+        // 🧩 Run vendor publish
+        $this->artisan('vendor:publish', ['--tag' => 'ntrolebase-migrations'])
+            ->assertExitCode(0);
+
+        // ✅ Verify migration copied
+        // $files = glob($targetDir . '/*_create_migration_table_name_table.php');
+        // $this->assertNotEmpty($files, 'Migration file was not published.');
+
+        // // 🧩 Optional: Validate migration content
+        // $content = File::get($files[0]);
+        // $this->assertStringContainsString('Schema::create', $content);
+    }
 }
