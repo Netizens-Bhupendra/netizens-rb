@@ -31,10 +31,12 @@ class NtRoleBaseServiceProvider extends PackageServiceProvider
         ], 'ntrolebase-routes');
 
 
+
         // 3 Publish controllers so users can customize
         $this->publishes([
-            __DIR__ . '/../Http/Controllers/NtRoleBase' => app_path('Http/Controllers/NtRoleBase'),
+            __DIR__ . '/Http/Controllers/NtRoleBase' => app_path('Http/Controllers/NtRoleBase'),
         ], 'ntrolebase-controllers');
+
 
         // 3 Load views from package
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'ntrolebaseView');
