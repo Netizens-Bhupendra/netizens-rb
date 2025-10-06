@@ -77,7 +77,7 @@ class PublishTest extends RBTestCase
         $targetDir = base_path('vendor/orchestra/testbench-core/laravel/database/migrations');
 
         // 🧹 Clean previously published migrations
-        $publishedFiles = glob($targetDir . '/*_create_migration_table_name_table.php');
+        $publishedFiles = glob($targetDir.'/*_create_migration_table_name_table.php');
         foreach ($publishedFiles as $file) {
             File::delete($file);
         }
