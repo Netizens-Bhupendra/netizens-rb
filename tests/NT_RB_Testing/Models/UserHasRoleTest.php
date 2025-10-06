@@ -10,7 +10,6 @@ class UserHasRoleTest extends RBTestCase
 {
     use RefreshDatabase; // resets DB between tests
 
-
     public function test_it_can_check_db_connection()
     {
         // dump(config('database.connections.testing'));

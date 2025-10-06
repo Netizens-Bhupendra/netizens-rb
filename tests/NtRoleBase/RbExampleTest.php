@@ -2,8 +2,8 @@
 
 namespace Netizens\RB\Tests\NtRoleBase;
 
-use Orchestra\Testbench\TestCase;
 use Netizens\RB\NtRoleBaseServiceProvider;
+use Orchestra\Testbench\TestCase;
 
 class RbExampleTest extends TestCase
 {
