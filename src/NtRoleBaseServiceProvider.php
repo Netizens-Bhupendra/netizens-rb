@@ -2,9 +2,9 @@
 
 namespace Netizens\RB;
 
+use Netizens\RB\Commands\NtRoleBaseCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Netizens\RB\Commands\NtRoleBaseCommand;
 
 class NtRoleBaseServiceProvider extends PackageServiceProvider
 {

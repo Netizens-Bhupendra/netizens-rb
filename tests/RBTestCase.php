@@ -7,7 +7,6 @@ use Orchestra\Testbench\TestCase as Orchestra;
 
 class RBTestCase extends Orchestra
 {
-
     protected function getPackageProviders($app)
     {
         return [
