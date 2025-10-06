@@ -98,23 +98,23 @@ class PublishTest extends RBTestCase
     /** @test */
     public function test_it_can_publish_all_assets_dynamically()
     {
-        $packageRoot = __DIR__ . '/../../../'; // adjust if your tests folder is deeper
+        $packageRoot = __DIR__.'/../../../'; // adjust if your tests folder is deeper
 
         $publishMap = [
             'routes' => [
-                'source' => $packageRoot . 'routes/ntrolebase',
+                'source' => $packageRoot.'routes/ntrolebase',
                 'target' => base_path('routes/ntrolebase'),
             ],
             'controllers' => [
-                'source' => $packageRoot . 'src/Http/Controllers/NtRoleBase',
+                'source' => $packageRoot.'src/Http/Controllers/NtRoleBase',
                 'target' => app_path('Http/Controllers/NtRoleBase'),
             ],
             'views' => [
-                'source' => $packageRoot . 'resources/views/ntrolebase',
+                'source' => $packageRoot.'resources/views/ntrolebase',
                 'target' => resource_path('views/ntrolebase'),
             ],
             'migrations' => [
-                'source' => $packageRoot . 'database/migrations/ntrolebase',
+                'source' => $packageRoot.'database/migrations/ntrolebase',
                 'target' => database_path('migrations/ntrolebase'),
             ],
         ];
@@ -135,7 +135,7 @@ class PublishTest extends RBTestCase
             $sourceFiles = File::allFiles($map['source']);
             foreach ($sourceFiles as $file) {
                 $relativePath = $file->getRelativePathname();
-                $targetFile = $map['target'] . '/' . $relativePath;
+                $targetFile = $map['target'].'/'.$relativePath;
 
                 $this->assertFileExists($targetFile, "Failed asserting published file exists: $targetFile");
             }
