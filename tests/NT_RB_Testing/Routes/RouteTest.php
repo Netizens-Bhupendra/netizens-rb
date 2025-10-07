@@ -8,7 +8,7 @@ class RouteTest extends RBTestCase
 {
     public function test_it_can_check_role_base_index_route()
     {
-        $response = $this->get('role-base/index');
+        $response = $this->get('nt-role-base/role-permissions');
 
         $response->assertStatus(200);
     }
