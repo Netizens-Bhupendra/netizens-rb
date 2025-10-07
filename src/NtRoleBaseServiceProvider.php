@@ -55,7 +55,7 @@ class NtRoleBaseServiceProvider extends PackageServiceProvider
         // Determine route file
         $routePath = base_path('routes/ntrolebase/ntrb_routes.php');
         if (! File::exists($routePath)) {
-            $routePath = __DIR__.'/../routes/ntrolebase/ntrb_routes.php';
+            $routePath = __DIR__ . '/../routes/ntrolebase/ntrb_routes.php';
         }
         // 2 Load package routes
         // $this->loadRoutesFrom(__DIR__.'/../routes/ntrolebase/ntrb_routes.php');
@@ -83,8 +83,7 @@ class NtRoleBaseServiceProvider extends PackageServiceProvider
         parent::boot();
 
         /**
-         * 🔹 ROUTES
-         * Prefer published routes, fallback to package ones
+         * 🔹 ROUTES — Prefer published, fallback to vendor
          */
         $routePath = base_path('routes/ntrolebase/ntrb_routes.php');
         if (!File::exists($routePath)) {
@@ -93,23 +92,20 @@ class NtRoleBaseServiceProvider extends PackageServiceProvider
         $this->loadRoutesFrom($routePath);
 
         /**
-         * 🔹 CONTROLLERS
-         * No direct load needed — just ensure route file points to correct namespace.
-         * If you want to auto-load your app’s override controller:
+         * 🔹 CONTROLLERS — Allow override from published app controller
          */
-        if (File::exists(app_path('Http/Controllers/NtRoleBase/NtRoleBaseController.php'))) {
-            include_once app_path('Http/Controllers/NtRoleBase/NtRoleBaseController.php');
+        $publishedController = app_path('Http/Controllers/NtRoleBase/NtRoleBaseController.php');
+        if (File::exists($publishedController)) {
+            include_once $publishedController;
         }
 
         /**
-         * 🔹 VIEWS
-         * Prefer published views, fallback to package ones
+         * 🔹 VIEWS — Prefer published, fallback to vendor
          */
         $this->loadViewsFrom([resource_path('views/ntrolebase'), __DIR__ . '/../resources/views',], 'ntrolebaseView');
 
         /**
-         * 🔹 MIGRATIONS
-         * Prefer published ones if needed, fallback to vendor
+         * 🔹 MIGRATIONS — Prefer published, fallback to vendor
          */
         $migrationPath = database_path('migrations/ntrolebase');
         if (!File::exists($migrationPath)) {
@@ -118,7 +114,7 @@ class NtRoleBaseServiceProvider extends PackageServiceProvider
         $this->loadMigrationsFrom($migrationPath);
 
         /**
-         * 🔹 Publish all assets
+         * 🔹 PUBLISH ALL ASSETS (Single unified tag)
          */
         $this->publishes([
             __DIR__ . '/../routes/ntrolebase/ntrb_routes.php' => base_path('routes/ntrolebase/ntrb_routes.php'),
@@ -126,5 +122,28 @@ class NtRoleBaseServiceProvider extends PackageServiceProvider
             __DIR__ . '/../resources/views/ntrolebase' => resource_path('views/ntrolebase'),
             __DIR__ . '/../database/migrations/ntrolebase' => database_path('migrations/ntrolebase'),
         ], 'ntrolebase-all');
+
+        /**
+         * 🔹 AUTO-FIX NAMESPACE in published files (optional but handy)
+         * Runs only in console when publishing
+         */
+        if ($this->app->runningInConsole()) {
+            $publishedFiles = [
+                $publishedController => [
+                    'Netizens\\RB\\Http\\Controllers\\NtRoleBase',
+                    'App\\Http\\Controllers\\NtRoleBase',
+                ],
+                base_path('routes/ntrolebase/ntrb_routes.php') => [
+                    'Netizens\\RB\\Http\\Controllers\\NtRoleBase',
+                    'App\\Http\\Controllers\\NtRoleBase',
+                ],
+            ];
+
+            foreach ($publishedFiles as $file => [$search, $replace]) {
+                if (File::exists($file)) {
+                    File::put($file, str_replace($search, $replace, File::get($file)));
+                }
+            }
+        }
     }
 }
