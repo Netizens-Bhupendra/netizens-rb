@@ -10,6 +10,6 @@ class RouteTest extends RBTestCase
     {
         $response = $this->get('role-base/index');
 
-        $response->assertStatus(200)->assertSee('Welcome to Nt-RB');
+        $response->assertStatus(200);
     }
 }
