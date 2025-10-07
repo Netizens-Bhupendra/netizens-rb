@@ -55,7 +55,7 @@ class NtRoleBaseServiceProvider extends PackageServiceProvider
         // Determine route file
         $routePath = base_path('routes/ntrolebase/ntrb_routes.php');
         if (! File::exists($routePath)) {
-            $routePath = __DIR__ . '/../routes/ntrolebase/ntrb_routes.php';
+            $routePath = __DIR__.'/../routes/ntrolebase/ntrb_routes.php';
         }
         // 2 Load package routes
         // $this->loadRoutesFrom(__DIR__.'/../routes/ntrolebase/ntrb_routes.php');
