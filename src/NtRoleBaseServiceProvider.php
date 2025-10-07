@@ -64,17 +64,17 @@ class NtRoleBaseServiceProvider extends PackageServiceProvider
         $this->loadRoutesFrom($routePath);
 
         // 1 Load package migrations
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations/ntrolebase');
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations/ntrolebase');
 
         // 3 Load package views
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'ntrolebaseView');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'ntrolebaseView');
 
         // Publish everything under one tag
         $this->publishes([
-            __DIR__ . '/../routes/ntrolebase/ntrb_routes.php' => base_path('routes/ntrolebase/ntrb_routes.php'),
-            __DIR__ . '/Http/Controllers/NtRoleBase' => app_path('Http/Controllers/NtRoleBase'),
-            __DIR__ . '/../resources/views/ntrolebase' => resource_path('views/ntrolebase'),
-            __DIR__ . '/../database/migrations/ntrolebase' => database_path('migrations/ntrolebase'),
+            __DIR__.'/../routes/ntrolebase/ntrb_routes.php' => base_path('routes/ntrolebase/ntrb_routes.php'),
+            __DIR__.'/Http/Controllers/NtRoleBase' => app_path('Http/Controllers/NtRoleBase'),
+            __DIR__.'/../resources/views/ntrolebase' => resource_path('views/ntrolebase'),
+            __DIR__.'/../database/migrations/ntrolebase' => database_path('migrations/ntrolebase'),
         ], 'ntrolebase-all');
     }
 
@@ -87,8 +87,8 @@ class NtRoleBaseServiceProvider extends PackageServiceProvider
          * Prefer published routes, fallback to package ones
          */
         $routePath = base_path('routes/ntrolebase/ntrb_routes.php');
-        if (!File::exists($routePath)) {
-            $routePath = __DIR__ . '/../routes/ntrolebase/ntrb_routes.php';
+        if (! File::exists($routePath)) {
+            $routePath = __DIR__.'/../routes/ntrolebase/ntrb_routes.php';
         }
         $this->loadRoutesFrom($routePath);
 
@@ -105,15 +105,15 @@ class NtRoleBaseServiceProvider extends PackageServiceProvider
          * 🔹 VIEWS
          * Prefer published views, fallback to package ones
          */
-        $this->loadViewsFrom([resource_path('views/ntrolebase'), __DIR__ . '/../resources/views',], 'ntrolebaseView');
+        $this->loadViewsFrom([resource_path('views/ntrolebase'), __DIR__.'/../resources/views'], 'ntrolebaseView');
 
         /**
          * 🔹 MIGRATIONS
          * Prefer published ones if needed, fallback to vendor
          */
         $migrationPath = database_path('migrations/ntrolebase');
-        if (!File::exists($migrationPath)) {
-            $migrationPath = __DIR__ . '/../database/migrations/ntrolebase';
+        if (! File::exists($migrationPath)) {
+            $migrationPath = __DIR__.'/../database/migrations/ntrolebase';
         }
         $this->loadMigrationsFrom($migrationPath);
 
@@ -121,10 +121,10 @@ class NtRoleBaseServiceProvider extends PackageServiceProvider
          * 🔹 Publish all assets
          */
         $this->publishes([
-            __DIR__ . '/../routes/ntrolebase/ntrb_routes.php' => base_path('routes/ntrolebase/ntrb_routes.php'),
-            __DIR__ . '/Http/Controllers/NtRoleBase' => app_path('Http/Controllers/NtRoleBase'),
-            __DIR__ . '/../resources/views/ntrolebase' => resource_path('views/ntrolebase'),
-            __DIR__ . '/../database/migrations/ntrolebase' => database_path('migrations/ntrolebase'),
+            __DIR__.'/../routes/ntrolebase/ntrb_routes.php' => base_path('routes/ntrolebase/ntrb_routes.php'),
+            __DIR__.'/Http/Controllers/NtRoleBase' => app_path('Http/Controllers/NtRoleBase'),
+            __DIR__.'/../resources/views/ntrolebase' => resource_path('views/ntrolebase'),
+            __DIR__.'/../database/migrations/ntrolebase' => database_path('migrations/ntrolebase'),
         ], 'ntrolebase-all');
     }
 }
