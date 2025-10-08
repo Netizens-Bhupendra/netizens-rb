@@ -1,6 +1,6 @@
 <?php
 
-namespace  Netizens\RB\DataTables\NtRoleBase;
+namespace Netizens\RB\DataTables\NtRoleBase;
 
 use App\Models\User;
 use Carbon\Carbon;
@@ -12,21 +12,21 @@ use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 
-
 class NtRoleDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
      *
-     * @param QueryBuilder $query Results from query() method.
+     * @param  QueryBuilder  $query  Results from query() method.
      */
     public $i = 1;
+
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         $userIds = $this->query(new NtrbUserHasRole)
             ->get()
             ->pluck('role.name')
-            ->map(fn($roleName) => preg_replace('/.*([0-9a-fA-F\-]{36})$/', '$1', $roleName))
+            ->map(fn ($roleName) => preg_replace('/.*([0-9a-fA-F\-]{36})$/', '$1', $roleName))
             ->filter()
             ->unique();
         // Fetch users in bulk
@@ -42,18 +42,21 @@ class NtRoleDataTable extends DataTable
             })
             ->addColumn('role_name', function ($query) {
                 $return = isset($query->role_name) ? $query->role_name : 'NA';
+
                 return $return;
             })
             ->addColumn('created_at', function ($query) {
                 $return = Carbon::parse($query->created_at)->format('d-m-Y');
+
                 return $return;
             })
             ->filterColumn('role_name', function ($query, $keyword) {
-                $query->where('role_name', 'like', '%' . $keyword . '%');
+                $query->where('role_name', 'like', '%'.$keyword.'%');
             })
             ->addColumn('created_by', function ($query) use ($users) {
                 $roleName = $query->role->name ?? '';
                 $userId = $roleName ? preg_replace('/.*([0-9a-fA-F\-]{36})$/', '$1', $roleName) : null;
+
                 return $userId && isset($users[$userId]) ? $users[$userId] : 'NA';
             })
 
@@ -68,9 +71,9 @@ class NtRoleDataTable extends DataTable
                 return '<div class="appTimes" id="appTimes">
                     <input type="checkbox"
                         class="select-row form-check-input"
-                        value="' . $id . '"
-                        data-id="' . $id . '"
-                        data-name="' . htmlspecialchars($name, ENT_QUOTES) . '">
+                        value="'.$id.'"
+                        data-id="'.$id.'"
+                        data-name="'.htmlspecialchars($name, ENT_QUOTES).'">
                 </div>';
             })
 
@@ -80,19 +83,19 @@ class NtRoleDataTable extends DataTable
                 $btnView = '';
                 // if (auth()->user()->canAny(['custom_role_update', 'custom_role_delete', 'manage_custom_role_permission'])) {
                 //     if (auth()->user()->can('custom_role_update')) {
-                        $btnUpdate = '<a href="javascript:;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Edit" data-id="' . $query->role_id . '" data-title="' . $query->title . '" class="btn btn-icon btn-text-secondary waves-effect waves-light rounded-pill edit-record-btn">
+                $btnUpdate = '<a href="javascript:;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Edit" data-id="'.$query->role_id.'" data-title="'.$query->title.'" class="btn btn-icon btn-text-secondary waves-effect waves-light rounded-pill edit-record-btn">
                                         <i class="ti ti-pencil ti-md"></i>
                                     </a>';
-                    // }
+                // }
 
-                    // if (auth()->user()->can('custom_role_delete')) {
-                        $btnDelete = '<a href="javascript:;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Delete" data-id="' . $query->role_id . '" data-title="' . $query->title . '" class="btn btn-icon btn-text-secondary waves-effect waves-light rounded-pill delete-record-btn">
+                // if (auth()->user()->can('custom_role_delete')) {
+                $btnDelete = '<a href="javascript:;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Delete" data-id="'.$query->role_id.'" data-title="'.$query->title.'" class="btn btn-icon btn-text-secondary waves-effect waves-light rounded-pill delete-record-btn">
                                         <i class="ti ti-trash ti-md"></i>
                                     </a>';
-                    // }
+                // }
 
-                    // if (auth()->user()->can('manage_custom_role_permission')) {
-                        $btnView = '<a href="javascript:;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Permisisons" data-role_id="' . $query->role_id . '" class="btn btn-icon btn-text-secondary view-permission-btn">
+                // if (auth()->user()->can('manage_custom_role_permission')) {
+                $btnView = '<a href="javascript:;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Permisisons" data-role_id="'.$query->role_id.'" class="btn btn-icon btn-text-secondary view-permission-btn">
                                         <i class="ti ti-eye ti-md"></i>
                                     </a>';
                 //     }
@@ -100,11 +103,11 @@ class NtRoleDataTable extends DataTable
                 //     return '<span class="large-tag badge badge-light text-danger">No Permission</span>';
                 // }
 
-                return '<div class="d-flex align-items-center">' . $btnView . $btnUpdate . $btnDelete  . '</div>';
+                return '<div class="d-flex align-items-center">'.$btnView.$btnUpdate.$btnDelete.'</div>';
             })
 
-            ->orderColumn('role_name','role_name $1')
-            ->orderColumn('created_at','user_has_roles.created_at $1')
+            ->orderColumn('role_name', 'role_name $1')
+            ->orderColumn('created_at', 'user_has_roles.created_at $1')
 
             ->setRowId('id')
             ->rawColumns(['#', 'role_name', 'created_at', 'action', 'delete_checkbox']);
@@ -116,6 +119,7 @@ class NtRoleDataTable extends DataTable
     public function query(NtrbUserHasRole $model): QueryBuilder
     {
         $auth_user = Auth::user();
+
         return $model->newQuery()
             ->with(['role' => function ($q) {
                 $q->withCount('users'); // counts users per role
@@ -132,31 +136,31 @@ class NtRoleDataTable extends DataTable
         $buttons = [];
 
         // if (auth()->user()->can('custom_role_create')) {
-            $buttons[] = [
-                'text' => '<i class="ti ti-plus me-sm-1"></i>',
-                'className' => 'dt-button create-new-record btn btn-sm btn-primary ms-2',
-                'attr' => [
-                    'type' => 'button'
-                ],
-            ];
+        $buttons[] = [
+            'text' => '<i class="ti ti-plus me-sm-1"></i>',
+            'className' => 'dt-button create-new-record btn btn-sm btn-primary ms-2',
+            'attr' => [
+                'type' => 'button',
+            ],
+        ];
         // }
 
         // if (auth()->user()->can('custom_role_delete')) {
-            $buttons[] = [
-                'text' => '<i class="ti ti-trash me-sm-1"></i><span class="d-none d-sm-inline-block">Delete</span>',
-                'className' => 'dt-button btn btn-sm btn-danger ms-2',
-                'attr' => [
-                    'id' => 'delete-selected',
-                    'type' => 'button'
-                ],
-            ];
+        $buttons[] = [
+            'text' => '<i class="ti ti-trash me-sm-1"></i><span class="d-none d-sm-inline-block">Delete</span>',
+            'className' => 'dt-button btn btn-sm btn-danger ms-2',
+            'attr' => [
+                'id' => 'delete-selected',
+                'type' => 'button',
+            ],
+        ];
         // }
 
         return $this->builder()
             ->setTableId('role-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
-            //->dom('Bfrtip')
+            // ->dom('Bfrtip')
             ->responsive(true)
             ->orderBy(1)
             ->parameters([
@@ -184,10 +188,10 @@ class NtRoleDataTable extends DataTable
         $columns = []; // Initialize the $columns array
 
         // if (auth()->user()->can('custom_role_delete')) {
-            $columns[] = Column::make('delete_checkbox')
-                                ->title('<input type="checkbox" id="select-all" class="form-check-input"/>')
-                                ->titleAttr('Select All')
-                                ->orderable(false);
+        $columns[] = Column::make('delete_checkbox')
+            ->title('<input type="checkbox" id="select-all" class="form-check-input"/>')
+            ->titleAttr('Select All')
+            ->orderable(false);
         // }
 
         $columns = array_merge($columns, [
@@ -225,6 +229,6 @@ class NtRoleDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Role_' . date('YmdHis');
+        return 'Role_'.date('YmdHis');
     }
 }
