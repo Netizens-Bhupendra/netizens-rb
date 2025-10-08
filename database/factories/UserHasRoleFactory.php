@@ -3,11 +3,11 @@
 namespace Netizens\RB\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Netizens\RB\Models\UserHasRole;
+use Netizens\RB\Models\NtrbUserHasRole;
 
 class UserHasRoleFactory extends Factory
 {
-    protected $model = UserHasRole::class;
+    protected $model = NtrbUserHasRole::class;
 
     public function definition()
     {

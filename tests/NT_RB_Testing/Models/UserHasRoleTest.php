@@ -3,7 +3,7 @@
 namespace Netizens\RB\Tests\NT_RB_Testing\Models;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Netizens\RB\Models\UserHasRole;
+use Netizens\RB\Models\NtrbUserHasRole;
 use Netizens\RB\Tests\RBTestCase;
 
 class UserHasRoleTest extends RBTestCase
@@ -19,7 +19,7 @@ class UserHasRoleTest extends RBTestCase
     /** @test */
     public function test_it_can_create_a_user_has_role_record()
     {
-        $record = UserHasRole::create([
+        $record = NtrbUserHasRole::create([
             'user_id' => '123e4567-e89b-12d3-a456-426614174000',
             'role_id' => '223e4567-e89b-12d3-a456-426614174111',
             'role_name' => 'Admin',
@@ -34,7 +34,7 @@ class UserHasRoleTest extends RBTestCase
     /** @test */
     public function test_it_can_soft_delete_a_record()
     {
-        $record = UserHasRole::factory()->create();
+        $record = NtrbUserHasRole::factory()->create();
 
         $record->delete();
 
